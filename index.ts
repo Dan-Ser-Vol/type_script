@@ -3,7 +3,7 @@
 
 
 
-const starlink = {
+const starlink: IData = {
     mission_name: "Starlink-15 (v1.0)",
     launch_date_local: "2020-10-24T11:31:00-04:00",
     launch_site: {
@@ -39,6 +39,31 @@ const starlink = {
 }
 
 
+interface ICores {
+    flight: number;
+    core: {
+        reuse_count: number;
+            status: string;
+    }
+}
+
+interface IPayloads {
+    payload_type: string;
+    payload_mass_kg: number;
+    payload_mass_lbs: number;
+}
+
+interface IRocket {
+    rocket_name: string;
+    first_stage: {
+        cores: ICores[];
+    }
+    second_stage: {
+        payloads: IPayloads[]
+    };
+}
+
+
 interface IData {
     mission_name: string;
     launch_date_local: string;
@@ -49,37 +74,13 @@ interface IData {
         article_link: string;
         video_link: string;
     };
-    rocket: {
-        rocket_name: string;
-        first_stage: {
-            cores:
-                {
-                    flight: number;
-                    core: {
-                        reuse_count: number,
-                        status: string
-                    }
-                }[];
-        }
-        second_stage: {
-            payloads: {
-                payload_type: string;
-                payload_mass_kg: number;
-                payload_mass_lbs: number;
-            }[];
-        };
-    };
+    rocket: IRocket
 }
 
-const foo = (obj: IData): void => {
-    console.log(obj)
-}
 
-foo(starlink)
 
 
 // 2) протипізувати функції:
-
 interface IUser  {
     name:string,
     age:number,
@@ -94,17 +95,17 @@ interface IUser  {
     }
 
 
-function sum(a:number,b:number){
+function sum(a:number,b:number): number{
     return a+b
 }
 
 
-function showSum(a: number,b:number){
+function showSum(a: number,b:number): void{
     console.log(a + b);
 }
 
 
-function incAge(someUser: IUser, inc:number){
+function incAge(someUser: IUser, inc:number):IUser{
     someUser.age+=inc
     return someUser
 }
