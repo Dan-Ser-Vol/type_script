@@ -81,7 +81,7 @@ interface IData {
 
 
 // 2) протипізувати функції:
-interface IUser  {
+ export interface IUser  {
     name:string,
     age:number,
     gender:string
